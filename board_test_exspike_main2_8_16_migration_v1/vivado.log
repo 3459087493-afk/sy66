@@ -1,0 +1,1318 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Wed Oct 21 21:40:50 2026
+# Process ID: 533606
+# Current directory: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1
+# Command line: vivado -mode batch -source /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/build_overlay.tcl
+# Log file: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado.log
+# Journal file: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado.jou
+# Running On: cym-HP-OmniBook-7-Laptop-16-az0xxx, OS: Linux, CPU Frequency: 1604.540 MHz, CPU Physical cores: 10, Host memory: 33266 MB
+#-----------------------------------------------------------
+source /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/build_overlay.tcl
+# set script_dir [file normalize [file dirname [info script]]]
+# set root_dir [file normalize [file join $script_dir ..]]
+# set project_dir [file join $script_dir exspike_migration_8_16_vivado]
+# set rtl_dir [file join $root_dir rtl]
+# set board_repo [file normalize [file join $root_dir .. board_test_8_16 third_party pynq-supported-board-file]]
+# set design_name exspike_migration_8_16_design
+# set output_dir $root_dir
+# set_param board.repoPaths [list $board_repo]
+# create_project exspike_migration_8_16_vivado $project_dir -part xc7z020clg400-1 -force
+# set_property board_part tul.com.tw:pynq-z2:part0:1.0 [current_project]
+WARNING: [Board 49-151] The current board 'tul.com.tw::pynq-z2:1.0' is from a local repo. The vivado install has a corresponding board with version greater than or equal to the local repo board. Please use boards from vivado install to avoid any upgrade/migrate issues
+# add_files -norecurse [glob [file join $rtl_dir *.v]]
+# add_files -norecurse [glob [file join $rtl_dir exspike *.v]]
+# update_compile_order -fileset sources_1
+# create_bd_design $design_name
+WARNING: [BD 41-1753] The name 'exspike_migration_8_16_design' you have specified is long. The Windows OS has path length limitations. It is recommended you use shorter names(less than 25 characters) to reduce the likelihood of issues when/if running on windows OS.
+Wrote  : </home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.srcs/sources_1/bd/exspike_migration_8_16_design/exspike_migration_8_16_design.bd> 
+# create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0
+# apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 \
+#     -config {make_external "FIXED_IO, DDR" apply_board_preset "1" Master "Disable" Slave "Disable"} \
+#     [get_bd_cells processing_system7_0]
+# set_property -dict [list \
+#     CONFIG.PCW_USE_M_AXI_GP0 {1} \
+#     CONFIG.PCW_USE_S_AXI_HP0 {1} \
+#     CONFIG.PCW_USE_S_AXI_HP1 {1} \
+#     CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100.000000} \
+# ] [get_bd_cells processing_system7_0]
+CRITICAL WARNING: [PSU-1]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_0 has negative value -0.051 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-2]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_1 has negative value -0.006 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-3]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_2 has negative value -0.009 . PS DDR interfaces might fail when entering negative DQS skew values. 
+CRITICAL WARNING: [PSU-4]  Parameter : PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_3 has negative value -0.033 . PS DDR interfaces might fail when entering negative DQS skew values. 
+# create_bd_cell -type module -reference exspike_z2_top exspike_0
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'WREQ' by 01 for port or parameter 'rd_cmd'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'XREQ' by 0123 for port or parameter 'rd_cmd'
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_clk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_clk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'm_axi' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'm_axi' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_control' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_control' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_clk': Added interface parameter 'ASSOCIATED_RESET' with value 'ap_rst_n'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_clk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'm_axi'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_clk': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_rst_n': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-7067] Note that bus interface 'ap_clk' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+WARNING: [IP_Flow 19-3157] Bus Interface 'ap_rst_n': Bus parameter POLARITY is ACTIVE_LOW but port 'ap_rst_n' is not *resetn - please double check the POLARITY setting.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+# create_bd_cell -type module -reference ternary_attention_top attention_0
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'LK_REQ' by 0123 for port or parameter 'read_request'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'LP_REQ' by 012345 for port or parameter 'read_request'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'LQ_REQ' by 01 for port or parameter 'read_request'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'LK_DATA' by 01234 for port or parameter 'read_data'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'LP_DATA' by 0123456 for port or parameter 'read_data'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'LQ_DATA' by 012 for port or parameter 'read_data'
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_clk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_clk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ap_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'm_axi' of definition 'xilinx.com:interface:aximm:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_control' of definition 'xilinx.com:interface:aximm:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_clk': Added interface parameter 'ASSOCIATED_RESET' with value 'ap_rst_n'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_clk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'm_axi'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_clk': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ap_rst_n': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-7067] Note that bus interface 'ap_clk' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+WARNING: [IP_Flow 19-3157] Bus Interface 'ap_rst_n': Bus parameter POLARITY is ACTIVE_LOW but port 'ap_rst_n' is not *resetn - please double check the POLARITY setting.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+# apply_bd_automation -rule xilinx.com:bd_rule:axi4 \
+#     -config {Master "/processing_system7_0/M_AXI_GP0" Slave "/exspike_0/s_axi_control" Clk_master "/processing_system7_0/FCLK_CLK0 (100 MHz)" Clk_slave "/processing_system7_0/FCLK_CLK0 (100 MHz)" Clk_xbar "/processing_system7_0/FCLK_CLK0 (100 MHz)" intc_ip "New AXI Interconnect" master_apm "0"} \
+#     [get_bd_intf_pins exspike_0/s_axi_control]
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+Slave segment '/exspike_0/s_axi_control/reg0' is being assigned into address space '/processing_system7_0/Data' at <0x4000_0000 [ 4K ]>.
+# apply_bd_automation -rule xilinx.com:bd_rule:axi4 \
+#     -config {Master "/processing_system7_0/M_AXI_GP0" Slave "/attention_0/s_axi_control" Clk_master "/processing_system7_0/FCLK_CLK0 (100 MHz)" Clk_slave "/processing_system7_0/FCLK_CLK0 (100 MHz)" Clk_xbar "/processing_system7_0/FCLK_CLK0 (100 MHz)" intc_ip "New AXI Interconnect" master_apm "0"} \
+#     [get_bd_intf_pins attention_0/s_axi_control]
+Slave segment '/attention_0/s_axi_control/reg0' is being assigned into address space '/processing_system7_0/Data' at <0x4000_1000 [ 4K ]>.
+# apply_bd_automation -rule xilinx.com:bd_rule:axi4 \
+#     -config {Master "/exspike_0/m_axi" Slave "/processing_system7_0/S_AXI_HP0" Clk_master "/processing_system7_0/FCLK_CLK0 (100 MHz)" Clk_slave "/processing_system7_0/FCLK_CLK0 (100 MHz)" Clk_xbar "/processing_system7_0/FCLK_CLK0 (100 MHz)" intc_ip "New AXI Interconnect" master_apm "0"} \
+#     [get_bd_intf_pins processing_system7_0/S_AXI_HP0]
+Slave segment '/processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM' is being assigned into address space '/exspike_0/m_axi' at <0x0000_0000 [ 512M ]>.
+# apply_bd_automation -rule xilinx.com:bd_rule:axi4 \
+#     -config {Master "/attention_0/m_axi" Slave "/processing_system7_0/S_AXI_HP1" Clk_master "/processing_system7_0/FCLK_CLK0 (100 MHz)" Clk_slave "/processing_system7_0/FCLK_CLK0 (100 MHz)" Clk_xbar "/processing_system7_0/FCLK_CLK0 (100 MHz)" intc_ip "New AXI Interconnect" master_apm "0"} \
+#     [get_bd_intf_pins processing_system7_0/S_AXI_HP1]
+Slave segment '/processing_system7_0/S_AXI_HP1/HP1_DDR_LOWOCM' is being assigned into address space '/attention_0/m_axi' at <0x0000_0000 [ 512M ]>.
+# assign_bd_address
+# validate_bd_design
+WARNING: [BD 41-702] Propagation TCL tries to overwrite USER strength parameter PCW_M_AXI_GP0_FREQMHZ(10) on '/processing_system7_0' with propagated value(100). Command ignored
+WARNING: [BD 41-702] Propagation TCL tries to overwrite USER strength parameter PCW_S_AXI_HP0_FREQMHZ(10) on '/processing_system7_0' with propagated value(100). Command ignored
+WARNING: [BD 41-702] Propagation TCL tries to overwrite USER strength parameter PCW_S_AXI_HP1_FREQMHZ(10) on '/processing_system7_0' with propagated value(100). Command ignored
+# save_bd_design
+Wrote  : </home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.srcs/sources_1/bd/exspike_migration_8_16_design/exspike_migration_8_16_design.bd> 
+# set bd_file [get_files ${design_name}.bd]
+# make_wrapper -files $bd_file -top
+INFO: [BD 41-1662] The design 'exspike_migration_8_16_design.bd' is already validated. Therefore parameter propagation will not be re-run.
+Verilog Output written to : /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/synth/exspike_migration_8_16_design.v
+Verilog Output written to : /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/sim/exspike_migration_8_16_design.v
+Verilog Output written to : /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/hdl/exspike_migration_8_16_design_wrapper.v
+# set wrappers [glob -nocomplain [file join $project_dir *.gen sources_1 bd $design_name hdl *_wrapper.v]]
+# if {[llength $wrappers] != 1} { error "Expected one BD wrapper, got: $wrappers" }
+# add_files -norecurse [lindex $wrappers 0]
+# set_property top ${design_name}_wrapper [current_fileset]
+# update_compile_order -fileset sources_1
+# launch_runs impl_1 -to_step write_bitstream -jobs 4
+INFO: [BD 41-1662] The design 'exspike_migration_8_16_design.bd' is already validated. Therefore parameter propagation will not be re-run.
+Verilog Output written to : /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/synth/exspike_migration_8_16_design.v
+Verilog Output written to : /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/sim/exspike_migration_8_16_design.v
+Verilog Output written to : /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/hdl/exspike_migration_8_16_design_wrapper.v
+INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'M_AXI_GP0'. A default connection has been created.
+INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'S_AXI_HP0'. A default connection has been created.
+INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'S_AXI_HP1'. A default connection has been created.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block processing_system7_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block exspike_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block attention_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7_0_axi_periph/xbar .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_auto_pc_0/exspike_migration_8_16_design_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7_0_axi_periph/s00_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block rst_ps7_0_100M .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_auto_pc_1/exspike_migration_8_16_design_auto_pc_1_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_mem_intercon/s00_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_auto_pc_2/exspike_migration_8_16_design_auto_pc_2_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_mem_intercon_1/s00_couplers/auto_pc .
+Exporting to file /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/hw_handoff/exspike_migration_8_16_design.hwh
+Generated Hardware Definition File /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/synth/exspike_migration_8_16_design.hwdef
+INFO: [IP_Flow 19-6930] IPCACHE: runCacheChecks() number of threads = 8
+INFO: [IP_Flow 19-6921] IPCACHE: Adding cache check func to thread queue for IP exspike_migration_8_16_design_attention_0_0
+INFO: [IP_Flow 19-6921] IPCACHE: Adding cache check func to thread queue for IP exspike_migration_8_16_design_auto_pc_0
+INFO: [IP_Flow 19-6921] IPCACHE: Adding cache check func to thread queue for IP exspike_migration_8_16_design_auto_pc_1
+INFO: [IP_Flow 19-6921] IPCACHE: Adding cache check func to thread queue for IP exspike_migration_8_16_design_auto_pc_2
+INFO: [IP_Flow 19-6921] IPCACHE: Adding cache check func to thread queue for IP exspike_migration_8_16_design_exspike_0_0
+INFO: [IP_Flow 19-6921] IPCACHE: Adding cache check func to thread queue for IP exspike_migration_8_16_design_rst_ps7_0_100M_0
+INFO: [IP_Flow 19-6921] IPCACHE: Adding cache check func to thread queue for IP exspike_migration_8_16_design_xbar_0
+INFO: [IP_Flow 19-8020] IPCACHE: runCacheChecks() calling threadPool finishWork()
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: exspike_migration_8_16_design_attention_0_0
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: exspike_migration_8_16_design_auto_pc_0
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: exspike_migration_8_16_design_auto_pc_2
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: exspike_migration_8_16_design_auto_pc_1
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: exspike_migration_8_16_design_exspike_0_0
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: exspike_migration_8_16_design_rst_ps7_0_100M_0
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: exspike_migration_8_16_design_xbar_0
+[Wed Oct 21 21:41:25 2026] Launched exspike_migration_8_16_design_attention_0_0_synth_1, exspike_migration_8_16_design_exspike_0_0_synth_1, exspike_migration_8_16_design_processing_system7_0_0_synth_1, exspike_migration_8_16_design_auto_pc_2_synth_1, exspike_migration_8_16_design_auto_pc_1_synth_1, exspike_migration_8_16_design_rst_ps7_0_100M_0_synth_1, exspike_migration_8_16_design_auto_pc_0_synth_1, exspike_migration_8_16_design_xbar_0_synth_1, synth_1...
+Run output will be captured here:
+exspike_migration_8_16_design_attention_0_0_synth_1: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/exspike_migration_8_16_design_attention_0_0_synth_1/runme.log
+exspike_migration_8_16_design_exspike_0_0_synth_1: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/exspike_migration_8_16_design_exspike_0_0_synth_1/runme.log
+exspike_migration_8_16_design_processing_system7_0_0_synth_1: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/exspike_migration_8_16_design_processing_system7_0_0_synth_1/runme.log
+exspike_migration_8_16_design_auto_pc_2_synth_1: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/exspike_migration_8_16_design_auto_pc_2_synth_1/runme.log
+exspike_migration_8_16_design_auto_pc_1_synth_1: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/exspike_migration_8_16_design_auto_pc_1_synth_1/runme.log
+exspike_migration_8_16_design_rst_ps7_0_100M_0_synth_1: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/exspike_migration_8_16_design_rst_ps7_0_100M_0_synth_1/runme.log
+exspike_migration_8_16_design_auto_pc_0_synth_1: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/exspike_migration_8_16_design_auto_pc_0_synth_1/runme.log
+exspike_migration_8_16_design_xbar_0_synth_1: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/exspike_migration_8_16_design_xbar_0_synth_1/runme.log
+synth_1: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/synth_1/runme.log
+[Wed Oct 21 21:41:25 2026] Launched impl_1...
+Run output will be captured here: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/impl_1/runme.log
+launch_runs: Time (s): cpu = 00:00:23 ; elapsed = 00:00:19 . Memory (MB): peak = 1982.652 ; gain = 124.043 ; free physical = 3035 ; free virtual = 21941
+# wait_on_run impl_1
+[Wed Oct 21 21:41:25 2026] Waiting for impl_1 to finish...
+
+*** Running vivado
+    with args -log exspike_migration_8_16_design_wrapper.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source exspike_migration_8_16_design_wrapper.tcl -notrace
+
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source exspike_migration_8_16_design_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2022.2/data/ip'.
+Command: link_design -top exspike_migration_8_16_design_wrapper -part xc7z020clg400-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Project 1-454] Reading design checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_attention_0_0/exspike_migration_8_16_design_attention_0_0.dcp' for cell 'exspike_migration_8_16_design_i/attention_0'
+INFO: [Project 1-454] Reading design checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_exspike_0_0/exspike_migration_8_16_design_exspike_0_0.dcp' for cell 'exspike_migration_8_16_design_i/exspike_0'
+INFO: [Project 1-454] Reading design checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_processing_system7_0_0/exspike_migration_8_16_design_processing_system7_0_0.dcp' for cell 'exspike_migration_8_16_design_i/processing_system7_0'
+INFO: [Project 1-454] Reading design checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_rst_ps7_0_100M_0/exspike_migration_8_16_design_rst_ps7_0_100M_0.dcp' for cell 'exspike_migration_8_16_design_i/rst_ps7_0_100M'
+INFO: [Project 1-454] Reading design checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_auto_pc_1/exspike_migration_8_16_design_auto_pc_1.dcp' for cell 'exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_auto_pc_2/exspike_migration_8_16_design_auto_pc_2.dcp' for cell 'exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_xbar_0/exspike_migration_8_16_design_xbar_0.dcp' for cell 'exspike_migration_8_16_design_i/ps7_0_axi_periph/xbar'
+INFO: [Project 1-454] Reading design checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_auto_pc_0/exspike_migration_8_16_design_auto_pc_0.dcp' for cell 'exspike_migration_8_16_design_i/ps7_0_axi_periph/s00_couplers/auto_pc'
+Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.06 . Memory (MB): peak = 1785.113 ; gain = 0.000 ; free physical = 4985 ; free virtual = 21262
+INFO: [Netlist 29-17] Analyzing 874 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2022.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_processing_system7_0_0/exspike_migration_8_16_design_processing_system7_0_0.xdc] for cell 'exspike_migration_8_16_design_i/processing_system7_0/inst'
+Finished Parsing XDC File [/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_processing_system7_0_0/exspike_migration_8_16_design_processing_system7_0_0.xdc] for cell 'exspike_migration_8_16_design_i/processing_system7_0/inst'
+Parsing XDC File [/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_rst_ps7_0_100M_0/exspike_migration_8_16_design_rst_ps7_0_100M_0_board.xdc] for cell 'exspike_migration_8_16_design_i/rst_ps7_0_100M/U0'
+Finished Parsing XDC File [/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_rst_ps7_0_100M_0/exspike_migration_8_16_design_rst_ps7_0_100M_0_board.xdc] for cell 'exspike_migration_8_16_design_i/rst_ps7_0_100M/U0'
+Parsing XDC File [/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_rst_ps7_0_100M_0/exspike_migration_8_16_design_rst_ps7_0_100M_0.xdc] for cell 'exspike_migration_8_16_design_i/rst_ps7_0_100M/U0'
+Finished Parsing XDC File [/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.gen/sources_1/bd/exspike_migration_8_16_design/ip/exspike_migration_8_16_design_rst_ps7_0_100M_0/exspike_migration_8_16_design_rst_ps7_0_100M_0.xdc] for cell 'exspike_migration_8_16_design_i/rst_ps7_0_100M/U0'
+INFO: [Project 1-1714] 6 XPM XDC files have been applied to the design.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2075.605 ; gain = 0.000 ; free physical = 4516 ; free virtual = 20794
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 191 instances were transformed.
+  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 32 instances
+  RAM128X1S => RAM128X1S (MUXF7, RAMS64E(x2)): 15 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 4 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 2 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 132 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 6 instances
+
+19 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:10 . Memory (MB): peak = 2075.605 ; gain = 559.465 ; free physical = 4516 ; free virtual = 20794
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:00.88 ; elapsed = 00:00:00.55 . Memory (MB): peak = 2075.605 ; gain = 0.000 ; free physical = 4526 ; free virtual = 20804
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 10d09ae30
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2437.164 ; gain = 361.559 ; free physical = 4271 ; free virtual = 20565
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 2 inverter(s) to 2 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: de2df3af
+
+Time (s): cpu = 00:00:00.6 ; elapsed = 00:00:00.23 . Memory (MB): peak = 2725.984 ; gain = 0.000 ; free physical = 4144 ; free virtual = 20425
+INFO: [Opt 31-389] Phase Retarget created 22 cells and removed 92 cells
+INFO: [Opt 31-1021] In phase Retarget, 54 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 12947807a
+
+Time (s): cpu = 00:00:00.68 ; elapsed = 00:00:00.31 . Memory (MB): peak = 2725.984 ; gain = 0.000 ; free physical = 4143 ; free virtual = 20424
+INFO: [Opt 31-389] Phase Constant propagation created 26 cells and removed 422 cells
+INFO: [Opt 31-1021] In phase Constant propagation, 54 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: edbd55c9
+
+Time (s): cpu = 00:00:00.84 ; elapsed = 00:00:00.48 . Memory (MB): peak = 2725.984 ; gain = 0.000 ; free physical = 4149 ; free virtual = 20430
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 228 cells
+INFO: [Opt 31-1021] In phase Sweep, 192 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 4 BUFG optimization
+Phase 4 BUFG optimization | Checksum: edbd55c9
+
+Time (s): cpu = 00:00:00.96 ; elapsed = 00:00:00.53 . Memory (MB): peak = 2758.000 ; gain = 32.016 ; free physical = 4148 ; free virtual = 20429
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 5 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 5 Shift Register Optimization | Checksum: edbd55c9
+
+Time (s): cpu = 00:00:00.97 ; elapsed = 00:00:00.54 . Memory (MB): peak = 2758.000 ; gain = 32.016 ; free physical = 4148 ; free virtual = 20429
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 6 Post Processing Netlist
+Phase 6 Post Processing Netlist | Checksum: b7c62edb
+
+Time (s): cpu = 00:00:00.99 ; elapsed = 00:00:00.56 . Memory (MB): peak = 2758.000 ; gain = 32.016 ; free physical = 4148 ; free virtual = 20429
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Post Processing Netlist, 66 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |              22  |              92  |                                             54  |
+|  Constant propagation         |              26  |             422  |                                             54  |
+|  Sweep                        |               0  |             228  |                                            192  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                             66  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2758.000 ; gain = 0.000 ; free physical = 4123 ; free virtual = 20404
+Ending Logic Optimization Task | Checksum: 1f7c994df
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.72 . Memory (MB): peak = 2758.000 ; gain = 32.016 ; free physical = 4123 ; free virtual = 20404
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 11 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 0 newly gated: 0 Total Ports: 22
+Ending PowerOpt Patch Enables Task | Checksum: 1f7c994df
+
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 3082.070 ; gain = 0.000 ; free physical = 4047 ; free virtual = 20328
+Ending Power Optimization Task | Checksum: 1f7c994df
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 3082.070 ; gain = 324.070 ; free physical = 4056 ; free virtual = 20337
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 1f7c994df
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3082.070 ; gain = 0.000 ; free physical = 4056 ; free virtual = 20337
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3082.070 ; gain = 0.000 ; free physical = 4056 ; free virtual = 20337
+Ending Netlist Obfuscation Task | Checksum: 1f7c994df
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3082.070 ; gain = 0.000 ; free physical = 4056 ; free virtual = 20337
+INFO: [Common 17-83] Releasing license: Implementation
+45 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:08 . Memory (MB): peak = 3082.070 ; gain = 1006.465 ; free physical = 4056 ; free virtual = 20337
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.16 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3082.070 ; gain = 0.000 ; free physical = 4037 ; free virtual = 20320
+INFO: [Common 17-1381] The checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/impl_1/exspike_migration_8_16_design_wrapper_opt.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_drc -file exspike_migration_8_16_design_wrapper_drc_opted.rpt -pb exspike_migration_8_16_design_wrapper_drc_opted.pb -rpx exspike_migration_8_16_design_wrapper_drc_opted.rpx
+Command: report_drc -file exspike_migration_8_16_design_wrapper_drc_opted.rpt -pb exspike_migration_8_16_design_wrapper_drc_opted.pb -rpx exspike_migration_8_16_design_wrapper_drc_opted.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/impl_1/exspike_migration_8_16_design_wrapper_drc_opted.rpt.
+report_drc completed successfully
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 26 Warnings
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 4123 ; free virtual = 20423
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 10a30c1fe
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 4144 ; free virtual = 20444
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 4142 ; free virtual = 20442
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: a5abe9a9
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.53 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 4144 ; free virtual = 20444
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: ecb91b24
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:01 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 4129 ; free virtual = 20429
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: ecb91b24
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:01 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 4129 ; free virtual = 20429
+Phase 1 Placer Initialization | Checksum: ecb91b24
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:01 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 4129 ; free virtual = 20429
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+Phase 2.1 Floorplanning | Checksum: 1d395334f
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:02 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 4164 ; free virtual = 20464
+
+Phase 2.2 Update Timing before SLR Path Opt
+Phase 2.2 Update Timing before SLR Path Opt | Checksum: 14d84e73a
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:02 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 4152 ; free virtual = 20452
+
+Phase 2.3 Post-Processing in Floorplanning
+Phase 2.3 Post-Processing in Floorplanning | Checksum: 1d6f9eeb6
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:02 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 4153 ; free virtual = 20452
+
+Phase 2.4 Global Placement Core
+
+Phase 2.4.1 UpdateTiming Before Physical Synthesis
+Phase 2.4.1 UpdateTiming Before Physical Synthesis | Checksum: 1e82f7f1e
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:08 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3801 ; free virtual = 20155
+
+Phase 2.4.2 Physical Synthesis In Placer
+INFO: [Physopt 32-1035] Found 18 LUTNM shape to break, 157 LUT instances to create LUTNM shape
+INFO: [Physopt 32-1044] Break lutnm for timing: one critical 5, two critical 13, total 18, new lutff created 1
+INFO: [Physopt 32-1138] End 1 Pass. Optimized 84 nets or LUTs. Breaked 18 LUTs, combined 66 existing LUTs and moved 0 existing LUT
+INFO: [Physopt 32-65] No nets found for high-fanout optimization.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-76] Pass 1. Identified 12 candidate nets for fanout optimization.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[8]. Replicated 7 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[6]. Replicated 3 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[7]. Replicated 3 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[12]. Replicated 7 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[9]. Replicated 7 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[11]. Replicated 7 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[13]. Replicated 7 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[10]. Replicated 8 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[14]. Replicated 7 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[4]. Replicated 4 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[5]. Replicated 3 times.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/exspike_0/inst/col_weight_address0[15]. Replicated 4 times.
+INFO: [Physopt 32-232] Optimized 12 nets. Created 67 new instances.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 12 nets or cells. Created 67 new cells, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3659 ; free virtual = 20012
+INFO: [Physopt 32-456] No candidate cells for DSP register optimization found in the design.
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-1123] No candidate cells found for Shift Register to Pipeline optimization
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-677] No candidate cells for Shift Register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-526] No candidate cells for BRAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-846] No candidate cells for URAM register optimization found in the design
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-949] No candidate nets found for dynamic/static region interface net replication
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3636 ; free virtual = 19989
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization                                     |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT Combining                                    |           18  |             66  |                    84  |           0  |           1  |  00:00:00  |
+|  Retime                                           |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Very High Fanout                                 |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Fanout                                           |           67  |              0  |                    12  |           0  |           1  |  00:00:00  |
+|  DSP Register                                     |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Shift Register to Pipeline                       |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Shift Register                                   |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  BRAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  URAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Dynamic/Static Region Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                                            |           85  |             66  |                    96  |           0  |          10  |  00:00:00  |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Phase 2.4.2 Physical Synthesis In Placer | Checksum: 15e64e43f
+
+Time (s): cpu = 00:00:40 ; elapsed = 00:00:09 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3638 ; free virtual = 19991
+Phase 2.4 Global Placement Core | Checksum: 181126d61
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:09 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3654 ; free virtual = 20006
+Phase 2 Global Placement | Checksum: 181126d61
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:09 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3654 ; free virtual = 20006
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 199b8043f
+
+Time (s): cpu = 00:00:42 ; elapsed = 00:00:09 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3652 ; free virtual = 20004
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 13a6644d2
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:10 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3675 ; free virtual = 20011
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 186a4bcd7
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:10 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3675 ; free virtual = 20011
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 150cce272
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:10 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3675 ; free virtual = 20011
+
+Phase 3.5 Fast Optimization
+Phase 3.5 Fast Optimization | Checksum: 125525b95
+
+Time (s): cpu = 00:00:47 ; elapsed = 00:00:11 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3691 ; free virtual = 20027
+
+Phase 3.6 Small Shape Detail Placement
+Phase 3.6 Small Shape Detail Placement | Checksum: 15d4f3dbd
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:12 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3686 ; free virtual = 20024
+
+Phase 3.7 Re-assign LUT pins
+Phase 3.7 Re-assign LUT pins | Checksum: 16e72aac2
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:12 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3684 ; free virtual = 20022
+
+Phase 3.8 Pipeline Register Optimization
+Phase 3.8 Pipeline Register Optimization | Checksum: ef0a2052
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:12 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3683 ; free virtual = 20021
+
+Phase 3.9 Fast Optimization
+Phase 3.9 Fast Optimization | Checksum: 13b7772bb
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:13 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3355 ; free virtual = 19716
+Phase 3 Detail Placement | Checksum: 13b7772bb
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:13 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3331 ; free virtual = 19694
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 1b9182761
+
+Phase 4.1.1.1 BUFG Insertion
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 8 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-3.096 | TNS=-113.101 |
+Phase 1 Physical Synthesis Initialization | Checksum: 208a0626a
+
+Time (s): cpu = 00:00:00.47 ; elapsed = 00:00:00.12 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3262 ; free virtual = 19633
+INFO: [Place 46-56] BUFG insertion identified 0 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 0, Skipped due to Timing Degradation: 0, Skipped due to Illegal Netlist: 0.
+Ending Physical Synthesis Task | Checksum: 1b33dfe50
+
+Time (s): cpu = 00:00:00.52 ; elapsed = 00:00:00.16 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3262 ; free virtual = 19632
+Phase 4.1.1.1 BUFG Insertion | Checksum: 1b9182761
+
+Time (s): cpu = 00:00:56 ; elapsed = 00:00:14 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3262 ; free virtual = 19632
+
+Phase 4.1.1.2 Post Placement Timing Optimization
+INFO: [Place 30-746] Post Placement Timing Summary WNS=-2.212. For the most accurate timing information please run report_timing.
+Phase 4.1.1.2 Post Placement Timing Optimization | Checksum: def52880
+
+Time (s): cpu = 00:01:02 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19679
+
+Time (s): cpu = 00:01:02 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19679
+Phase 4.1 Post Commit Optimization | Checksum: def52880
+
+Time (s): cpu = 00:01:02 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19679
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: def52880
+
+Time (s): cpu = 00:01:03 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19670
+
+Phase 4.3 Placer Reporting
+
+Phase 4.3.1 Print Estimated Congestion
+INFO: [Place 30-612] Post-Placement Estimated Congestion 
+ ____________________________________________________
+|           | Global Congestion | Short Congestion  |
+| Direction | Region Size       | Region Size       |
+|___________|___________________|___________________|
+|      North|                1x1|                4x4|
+|___________|___________________|___________________|
+|      South|                1x1|                1x1|
+|___________|___________________|___________________|
+|       East|                1x1|                1x1|
+|___________|___________________|___________________|
+|       West|                1x1|                1x1|
+|___________|___________________|___________________|
+
+Phase 4.3.1 Print Estimated Congestion | Checksum: def52880
+
+Time (s): cpu = 00:01:03 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19670
+Phase 4.3 Placer Reporting | Checksum: def52880
+
+Time (s): cpu = 00:01:03 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19670
+
+Phase 4.4 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19670
+
+Time (s): cpu = 00:01:03 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19670
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: f6005e42
+
+Time (s): cpu = 00:01:03 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19670
+Ending Placer Task | Checksum: 86f3c93c
+
+Time (s): cpu = 00:01:03 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19670
+INFO: [Common 17-83] Releasing license: Implementation
+100 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:01:04 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3324 ; free virtual = 19670
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.47 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3309 ; free virtual = 19669
+INFO: [Common 17-1381] The checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/impl_1/exspike_migration_8_16_design_wrapper_placed.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_io -file exspike_migration_8_16_design_wrapper_io_placed.rpt
+report_io: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.13 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3282 ; free virtual = 19648
+INFO: [runtcl-4] Executing : report_utilization -file exspike_migration_8_16_design_wrapper_utilization_placed.rpt -pb exspike_migration_8_16_design_wrapper_utilization_placed.pb
+INFO: [runtcl-4] Executing : report_control_sets -verbose -file exspike_migration_8_16_design_wrapper_control_sets_placed.rpt
+report_control_sets: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.09 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3278 ; free virtual = 19644
+Command: phys_opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+
+Starting Initial Update Timing Task
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.49 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3406 ; free virtual = 19772
+INFO: [Vivado_Tcl 4-1435] PhysOpt_Tcl_Interface Runtime Before Starting Physical Synthesis Task | CPU: 1.71s |  WALL: 0.54s
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3406 ; free virtual = 19772
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 8 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.212 | TNS=-87.855 |
+Phase 1 Physical Synthesis Initialization | Checksum: 1761bbcbb
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.53 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3415 ; free virtual = 19781
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.212 | TNS=-87.855 |
+
+Phase 2 DSP Register Optimization
+INFO: [Physopt 32-456] No candidate cells for DSP register optimization found in the design.
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Phase 2 DSP Register Optimization | Checksum: 1761bbcbb
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.58 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3411 ; free virtual = 19777
+
+Phase 3 Critical Path Optimization
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.212 | TNS=-87.855 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6/O1. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_spike. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/wr_value_reg[56]_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/wr_value[56]_i_11_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/wr_value_reg[56]_i_23_n_6. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_14_14_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_10_10_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6_i_5_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_sum[4]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc_reg[3]_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_5_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-601] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_14_n_0. Net driver exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_14 was replaced.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_14_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.211 | TNS=-87.817 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_14_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 17 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_30_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.204 | TNS=-87.551 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_11_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 18 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_21_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.199 | TNS=-87.361 |
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 18 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_21_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.193 | TNS=-87.133 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_21_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_41_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_41
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_41_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.188 | TNS=-86.943 |
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 26 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_6_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.137 | TNS=-85.005 |
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword[24].  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_44
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword[24]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.126 | TNS=-84.587 |
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 9 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword[24]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.119 | TNS=-84.321 |
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 18 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_22_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.101 | TNS=-83.637 |
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_43_n_0. Replicated 1 times.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_43_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.086 | TNS=-83.067 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_30_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_28_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_28
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_28_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.074 | TNS=-82.611 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_6_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_12_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_24_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_24_n_0. Critical path length was reduced through logic transformation on cell exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_24_comp.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_53_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.068 | TNS=-82.383 |
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 22 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_31_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.067 | TNS=-82.345 |
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_32_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_32
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_32_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.055 | TNS=-81.889 |
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_18_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_18
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_18_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.041 | TNS=-81.357 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_23_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_49_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_49
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_49_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.039 | TNS=-81.281 |
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 23 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_49_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.036 | TNS=-81.167 |
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 23 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_22_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.035 | TNS=-81.129 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_14_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_14_n_0. Critical path length was reduced through logic transformation on cell exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_14_comp.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_20_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.032 | TNS=-81.015 |
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_50_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_50
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_50_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.031 | TNS=-80.977 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_32_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_59_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_59
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_59_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.030 | TNS=-80.939 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_53_n_0_repN. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6_i_1_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword0[2]. Replicated 4 times.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword0[2]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.029 | TNS=-80.901 |
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword0[4]. Replicated 1 times.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword0[4]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.011 | TNS=-80.217 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword0[3]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/vmem_reg_64_127_42_44/DOA. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword10_in[3]. Replicated 3 times.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword10_in[3]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.988 | TNS=-79.343 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword10_in[3]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6/O1. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_spike. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/wr_value[56]_i_11_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/wr_value_reg[56]_i_23_n_6. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6_i_5_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_sum[4]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_6_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_12_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_24_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_53_n_0_repN. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6_i_1_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword0[3]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/vmem_reg_64_127_42_44/DOA. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword10_in[3]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.988 | TNS=-79.343 |
+Phase 3 Critical Path Optimization | Checksum: 1761bbcbb
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:07 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3603 ; free virtual = 19977
+
+Phase 4 Critical Path Optimization
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.988 | TNS=-79.343 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6/O1. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_spike. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/wr_value_reg[56]_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/wr_value[56]_i_11_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/wr_value_reg[56]_i_23_n_6. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_14_14_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_10_10_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6_i_5_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_sum[4]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc_reg[3]_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_6_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_12_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_24_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_53_n_0_repN. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6_i_1_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword0[3]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/vmem_reg_64_127_42_44/DOA. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-81] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword10_in[3]. Replicated 1 times.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword10_in[3]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.987 | TNS=-79.305 |
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword0[5].  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/vmem_reg_0_63_0_2_i_2
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword0[5]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.985 | TNS=-79.229 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword10_in[3]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6/O1. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_spike. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/wr_value[56]_i_11_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/wr_value_reg[56]_i_23_n_6. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6_i_5_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_sum[4]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_6_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_12_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_24_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 19 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_53_n_0_repN. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.957 | TNS=-78.165 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[3]_i_5_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_14_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_30_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_29_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_29
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_29_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.943 | TNS=-77.633 |
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_33_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_33
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_33_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.943 | TNS=-77.633 |
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_32_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_32
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_32_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.940 | TNS=-77.519 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_32_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 17 pins.
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_58_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.926 | TNS=-76.987 |
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_54_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_54
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_54_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.912 | TNS=-76.455 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_31_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_61_n_0.  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_61
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_61_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.908 | TNS=-76.303 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_acc[19]_i_53_n_0_repN. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/lif_mem_reg_0_127_6_6_i_1_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword0[5]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/vmem_reg_64_127_39_41/DOB. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword10_in[5].  Re-placed instance exspike_migration_8_16_design_i/attention_0/inst/aj_reg[3]
+INFO: [Physopt 32-735] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword10_in[5]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.906 | TNS=-76.227 |
+INFO: [Physopt 32-702] Processed net exspike_migration_8_16_design_i/attention_0/inst/av_vword10_in[5]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.906 | TNS=-76.227 |
+Phase 4 Critical Path Optimization | Checksum: 189404c2e
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:11 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3579 ; free virtual = 19953
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3579 ; free virtual = 19953
+INFO: [Physopt 32-603] Post Physical Optimization Timing Summary | WNS=-1.906 | TNS=-76.227 |
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization   |  WNS Gain (ns)  |  TNS Gain (ns)  |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  DSP Register   |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Critical Path  |          0.306  |         11.628  |           10  |              0  |                    34  |           0  |           2  |  00:00:10  |
+|  Total          |          0.306  |         11.628  |           10  |              0  |                    34  |           0  |           3  |  00:00:10  |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3579 ; free virtual = 19953
+Ending Physical Synthesis Task | Checksum: 936d8c46
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:11 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3578 ; free virtual = 19952
+INFO: [Common 17-83] Releasing license: Implementation
+303 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+phys_opt_design: Time (s): cpu = 00:00:53 ; elapsed = 00:00:11 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3578 ; free virtual = 19952
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.46 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3538 ; free virtual = 19926
+INFO: [Common 17-1381] The checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/impl_1/exspike_migration_8_16_design_wrapper_physopt.dcp' has been generated.
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 8 CPUs
+
+Phase 1 Build RT Design
+Checksum: PlaceDB: 16c58f79 ConstDB: 0 ShapeSum: 595f6454 RouteDB: 0
+Post Restoration Checksum: NetGraph: 3d07cd93 NumContArr: cee453f6 Constraints: 0 Timing: 0
+Phase 1 Build RT Design | Checksum: 10bec2189
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3739 ; free virtual = 20096
+
+Phase 2 Router Initialization
+
+Phase 2.1 Fix Topology Constraints
+Phase 2.1 Fix Topology Constraints | Checksum: 10bec2189
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3707 ; free virtual = 20064
+
+Phase 2.2 Pre Route Cleanup
+Phase 2.2 Pre Route Cleanup | Checksum: 10bec2189
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3707 ; free virtual = 20064
+ Number of Nodes with overlaps = 0
+
+Phase 2.3 Update Timing
+Phase 2.3 Update Timing | Checksum: 1dabe7ba4
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:13 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3675 ; free virtual = 20035
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.729 | TNS=-67.384| WHS=-0.192 | THS=-159.820|
+
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0 %
+  Global Horizontal Routing Utilization  = 0 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 8867
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 8867
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 2 Router Initialization | Checksum: 182c51671
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:14 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3666 ; free virtual = 20026
+
+Phase 3 Initial Routing
+
+Phase 3.1 Global Routing
+Phase 3.1 Global Routing | Checksum: 182c51671
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:14 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3666 ; free virtual = 20026
+Phase 3 Initial Routing | Checksum: 117d41afe
+
+Time (s): cpu = 00:00:24 ; elapsed = 00:00:15 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3660 ; free virtual = 20035
+INFO: [Route 35-580] Design has 4 pins with tight setup and hold constraints.
+
+The top 5 pins with tight setup and hold constraints:
+
++====================+===================+=====================================================================+
+| Launch Setup Clock | Launch Hold Clock | Pin                                                                 |
++====================+===================+=====================================================================+
+| clk_fpga_0         | clk_fpga_0        | exspike_migration_8_16_design_i/attention_0/inst/out_pack_reg[0]/D  |
+| clk_fpga_0         | clk_fpga_0        | exspike_migration_8_16_design_i/attention_0/inst/out_pack_reg[32]/D |
+| clk_fpga_0         | clk_fpga_0        | exspike_migration_8_16_design_i/attention_0/inst/out_pack_reg[40]/D |
+| clk_fpga_0         | clk_fpga_0        | exspike_migration_8_16_design_i/attention_0/inst/out_pack_reg[48]/D |
++--------------------+-------------------+---------------------------------------------------------------------+
+
+File with complete list of pins: tight_setup_hold_pins.txt
+
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 936
+ Number of Nodes with overlaps = 187
+ Number of Nodes with overlaps = 83
+ Number of Nodes with overlaps = 22
+ Number of Nodes with overlaps = 8
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-3.014 | TNS=-181.809| WHS=N/A    | THS=N/A    |
+
+Phase 4.1 Global Iteration 0 | Checksum: 23dccbba8
+
+Time (s): cpu = 00:00:32 ; elapsed = 00:00:20 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3626 ; free virtual = 19989
+
+Phase 4.2 Global Iteration 1
+ Number of Nodes with overlaps = 262
+ Number of Nodes with overlaps = 132
+ Number of Nodes with overlaps = 50
+ Number of Nodes with overlaps = 21
+ Number of Nodes with overlaps = 21
+ Number of Nodes with overlaps = 13
+ Number of Nodes with overlaps = 6
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-2.749 | TNS=-172.201| WHS=N/A    | THS=N/A    |
+
+Phase 4.2 Global Iteration 1 | Checksum: 1abae214b
+
+Time (s): cpu = 00:00:37 ; elapsed = 00:00:23 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3643 ; free virtual = 20003
+
+Phase 4.3 Global Iteration 2
+ Number of Nodes with overlaps = 251
+ Number of Nodes with overlaps = 70
+ Number of Nodes with overlaps = 36
+ Number of Nodes with overlaps = 22
+ Number of Nodes with overlaps = 6
+ Number of Nodes with overlaps = 3
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-2.819 | TNS=-170.024| WHS=N/A    | THS=N/A    |
+
+Phase 4.3 Global Iteration 2 | Checksum: 17836dc00
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:26 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3677 ; free virtual = 20053
+Phase 4 Rip-up And Reroute | Checksum: 17836dc00
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:26 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3673 ; free virtual = 20049
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+
+Phase 5.1.1 Update Timing
+Phase 5.1.1 Update Timing | Checksum: 1cb56f74e
+
+Time (s): cpu = 00:00:42 ; elapsed = 00:00:26 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3679 ; free virtual = 20055
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-2.634 | TNS=-160.921| WHS=N/A    | THS=N/A    |
+
+ Number of Nodes with overlaps = 0
+Phase 5.1 Delay CleanUp | Checksum: dfa25390
+
+Time (s): cpu = 00:00:43 ; elapsed = 00:00:27 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3647 ; free virtual = 20023
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: dfa25390
+
+Time (s): cpu = 00:00:43 ; elapsed = 00:00:27 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3647 ; free virtual = 20022
+Phase 5 Delay and Skew Optimization | Checksum: dfa25390
+
+Time (s): cpu = 00:00:43 ; elapsed = 00:00:27 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3647 ; free virtual = 20022
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 1050688ac
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:27 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3646 ; free virtual = 20021
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-2.517 | TNS=-126.411| WHS=0.022  | THS=0.000  |
+
+Phase 6.1 Hold Fix Iter | Checksum: 175643374
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:27 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3646 ; free virtual = 20021
+Phase 6 Post Hold Fix | Checksum: 175643374
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:27 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3646 ; free virtual = 20021
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 2.41876 %
+  Global Horizontal Routing Utilization  = 2.85581 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Congestion Report
+North Dir 1x1 Area, Max Cong = 67.5676%, No Congested Regions.
+South Dir 1x1 Area, Max Cong = 69.3694%, No Congested Regions.
+East Dir 1x1 Area, Max Cong = 64.7059%, No Congested Regions.
+West Dir 1x1 Area, Max Cong = 64.7059%, No Congested Regions.
+
+------------------------------
+Reporting congestion hotspots
+------------------------------
+Direction: North
+----------------
+Congested clusters found at Level 0
+Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 0
+Direction: South
+----------------
+Congested clusters found at Level 0
+Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 0
+Direction: East
+----------------
+Congested clusters found at Level 0
+Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 0
+Direction: West
+----------------
+Congested clusters found at Level 0
+Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 0
+
+Phase 7 Route finalize | Checksum: 1146edcc7
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:27 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3646 ; free virtual = 20021
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: 1146edcc7
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:27 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3646 ; free virtual = 20021
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: 1a37c3967
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:28 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3641 ; free virtual = 20017
+
+Phase 10 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=-2.517 | TNS=-126.411| WHS=0.022  | THS=0.000  |
+
+WARNING: [Route 35-328] Router estimated timing not met.
+Resolution: For a complete and accurate timing signoff, report_timing_summary must be run after route_design. Alternatively, route_design can be run with the -timing_summary option to enable a complete timing signoff at the end of route_design.
+Phase 10 Post Router Timing | Checksum: 1a37c3967
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:28 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3641 ; free virtual = 20016
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:28 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3695 ; free virtual = 20071
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+323 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:00:47 ; elapsed = 00:00:28 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3695 ; free virtual = 20071
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.51 . Memory (MB): peak = 3105.133 ; gain = 0.000 ; free physical = 3679 ; free virtual = 20070
+INFO: [Common 17-1381] The checkpoint '/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/impl_1/exspike_migration_8_16_design_wrapper_routed.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_drc -file exspike_migration_8_16_design_wrapper_drc_routed.rpt -pb exspike_migration_8_16_design_wrapper_drc_routed.pb -rpx exspike_migration_8_16_design_wrapper_drc_routed.rpx
+Command: report_drc -file exspike_migration_8_16_design_wrapper_drc_routed.rpt -pb exspike_migration_8_16_design_wrapper_drc_routed.pb -rpx exspike_migration_8_16_design_wrapper_drc_routed.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/impl_1/exspike_migration_8_16_design_wrapper_drc_routed.rpt.
+report_drc completed successfully
+INFO: [runtcl-4] Executing : report_methodology -file exspike_migration_8_16_design_wrapper_methodology_drc_routed.rpt -pb exspike_migration_8_16_design_wrapper_methodology_drc_routed.pb -rpx exspike_migration_8_16_design_wrapper_methodology_drc_routed.rpx
+Command: report_methodology -file exspike_migration_8_16_design_wrapper_methodology_drc_routed.rpt -pb exspike_migration_8_16_design_wrapper_methodology_drc_routed.pb -rpx exspike_migration_8_16_design_wrapper_methodology_drc_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 8 threads
+INFO: [Vivado_Tcl 2-1520] The results of Report Methodology are in file /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/exspike_migration_8_16_vivado/exspike_migration_8_16_vivado.runs/impl_1/exspike_migration_8_16_design_wrapper_methodology_drc_routed.rpt.
+report_methodology completed successfully
+INFO: [runtcl-4] Executing : report_power -file exspike_migration_8_16_design_wrapper_power_routed.rpt -pb exspike_migration_8_16_design_wrapper_power_summary_routed.pb -rpx exspike_migration_8_16_design_wrapper_power_routed.rpx
+Command: report_power -file exspike_migration_8_16_design_wrapper_power_routed.rpt -pb exspike_migration_8_16_design_wrapper_power_summary_routed.pb -rpx exspike_migration_8_16_design_wrapper_power_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
+Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.
+335 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+INFO: [runtcl-4] Executing : report_route_status -file exspike_migration_8_16_design_wrapper_route_status.rpt -pb exspike_migration_8_16_design_wrapper_route_status.pb
+INFO: [runtcl-4] Executing : report_timing_summary -max_paths 10 -report_unconstrained -file exspike_migration_8_16_design_wrapper_timing_summary_routed.rpt -pb exspike_migration_8_16_design_wrapper_timing_summary_routed.pb -rpx exspike_migration_8_16_design_wrapper_timing_summary_routed.rpx -warn_on_violation 
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+CRITICAL WARNING: [Timing 38-282] The design failed to meet the timing requirements. Please see the timing summary report for details on the timing violations.
+INFO: [runtcl-4] Executing : report_incremental_reuse -file exspike_migration_8_16_design_wrapper_incremental_reuse_routed.rpt
+INFO: [Vivado_Tcl 4-1062] Incremental flow is disabled. No incremental reuse Info to report.
+INFO: [runtcl-4] Executing : report_clock_utilization -file exspike_migration_8_16_design_wrapper_clock_utilization_routed.rpt
+INFO: [runtcl-4] Executing : report_bus_skew -warn_on_violation -file exspike_migration_8_16_design_wrapper_bus_skew_routed.rpt -pb exspike_migration_8_16_design_wrapper_bus_skew_routed.pb -rpx exspike_migration_8_16_design_wrapper_bus_skew_routed.rpx
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+Command: write_bitstream -force exspike_migration_8_16_design_wrapper.bit
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command write_bitstream
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+WARNING: [DRC CHECK-3] Report rule limit reached: REQP-1839 rule limit reached: 20 violations have been found.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[0].product_reg[0] input exspike_migration_8_16_design_i/exspike_0/inst/lane[0].product_reg[0]/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[0].product_reg[0] input exspike_migration_8_16_design_i/exspike_0/inst/lane[0].product_reg[0]/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[1].product_reg[1] input exspike_migration_8_16_design_i/exspike_0/inst/lane[1].product_reg[1]/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[1].product_reg[1] input exspike_migration_8_16_design_i/exspike_0/inst/lane[1].product_reg[1]/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[2].product_reg[2] input exspike_migration_8_16_design_i/exspike_0/inst/lane[2].product_reg[2]/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[2].product_reg[2] input exspike_migration_8_16_design_i/exspike_0/inst/lane[2].product_reg[2]/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[3].product_reg[3] input exspike_migration_8_16_design_i/exspike_0/inst/lane[3].product_reg[3]/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[3].product_reg[3] input exspike_migration_8_16_design_i/exspike_0/inst/lane[3].product_reg[3]/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[4].product_reg[4] input exspike_migration_8_16_design_i/exspike_0/inst/lane[4].product_reg[4]/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[4].product_reg[4] input exspike_migration_8_16_design_i/exspike_0/inst/lane[4].product_reg[4]/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[5].product_reg[5] input exspike_migration_8_16_design_i/exspike_0/inst/lane[5].product_reg[5]/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[5].product_reg[5] input exspike_migration_8_16_design_i/exspike_0/inst/lane[5].product_reg[5]/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[6].product_reg[6] input exspike_migration_8_16_design_i/exspike_0/inst/lane[6].product_reg[6]/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[6].product_reg[6] input exspike_migration_8_16_design_i/exspike_0/inst/lane[6].product_reg[6]/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[7].product_reg[7] input exspike_migration_8_16_design_i/exspike_0/inst/lane[7].product_reg[7]/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[7].product_reg[7] input exspike_migration_8_16_design_i/exspike_0/inst/lane[7].product_reg[7]/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPOP-2] MREG Output pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[0].product_reg[0] multiplier stage exspike_migration_8_16_design_i/exspike_0/inst/lane[0].product_reg[0]/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC DPOP-2] MREG Output pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[1].product_reg[1] multiplier stage exspike_migration_8_16_design_i/exspike_0/inst/lane[1].product_reg[1]/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC DPOP-2] MREG Output pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[2].product_reg[2] multiplier stage exspike_migration_8_16_design_i/exspike_0/inst/lane[2].product_reg[2]/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC DPOP-2] MREG Output pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[3].product_reg[3] multiplier stage exspike_migration_8_16_design_i/exspike_0/inst/lane[3].product_reg[3]/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC DPOP-2] MREG Output pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[4].product_reg[4] multiplier stage exspike_migration_8_16_design_i/exspike_0/inst/lane[4].product_reg[4]/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC DPOP-2] MREG Output pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[5].product_reg[5] multiplier stage exspike_migration_8_16_design_i/exspike_0/inst/lane[5].product_reg[5]/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC DPOP-2] MREG Output pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[6].product_reg[6] multiplier stage exspike_migration_8_16_design_i/exspike_0/inst/lane[6].product_reg[6]/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC DPOP-2] MREG Output pipelining: DSP exspike_migration_8_16_design_i/exspike_0/inst/lane[7].product_reg[7] multiplier stage exspike_migration_8_16_design_i/exspike_0/inst/lane[7].product_reg[7]/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A1' of cell exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A2)+((~A2)*(~A6)*A5)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A2' of cell exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A1)+((~A1)*(~A6)*A5)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A4' of cell exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A2)+((~A2)*(~A6)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A4' of cell exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A5)+((~A5)*(~A1)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A5' of cell exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A6)+((~A6)*(~A1)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A6' of cell exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A5)+((~A5)*(~A1)*A4)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_0 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_0/ADDRBWRADDR[5] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/raddr[0]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_0 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_0/ADDRBWRADDR[6] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/raddr[1]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_0 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_0/ENARDEN (net: exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/p_57_out) which is driven by a register (exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_1 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_1/ADDRBWRADDR[5] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/raddr[0]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_1 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_1/ADDRBWRADDR[6] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/raddr[1]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_1 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/memory_reg_1/ENARDEN (net: exspike_migration_8_16_design_i/exspike_0/inst/U_INPUT_TILE/p_57_out) which is driven by a register (exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/memory_reg has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/memory_reg/ADDRBWRADDR[3] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/ADDRBWRADDR[0]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/memory_reg has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/memory_reg/ADDRBWRADDR[4] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/ADDRBWRADDR[1]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/memory_reg has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/memory_reg/ADDRBWRADDR[5] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/ADDRBWRADDR[2]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/memory_reg has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/memory_reg/ADDRBWRADDR[6] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/ADDRBWRADDR[3]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/memory_reg has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/memory_reg/ENARDEN (net: exspike_migration_8_16_design_i/exspike_0/inst/U_SELECTED_TILE/we0) which is driven by a register (exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_0 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_0/ADDRBWRADDR[3] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[0]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_0 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_0/ADDRBWRADDR[4] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[1]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_0 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_0/ADDRBWRADDR[5] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[2]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_0 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_0/ADDRBWRADDR[6] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[3]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_0 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_0/ENARDEN (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/p_53_out) which is driven by a register (exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_1 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_1/ADDRBWRADDR[3] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[0]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_1 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_1/ADDRBWRADDR[4] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[1]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_1 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_1/ADDRBWRADDR[5] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[2]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_1 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_1/ADDRBWRADDR[6] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[3]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_7 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_7/ADDRBWRADDR[2] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[0]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_7 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_7/ADDRBWRADDR[3] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[1]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_7 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_7/ADDRBWRADDR[4] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[2]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_7 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_7/ADDRBWRADDR[5] (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/ADDRBWRADDR[3]) which is driven by a register (exspike_migration_8_16_design_i/exspike_0/inst/U_EXSPIKE_INDEX2ABS/absolute_addr_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_7 has an input control pin exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/memory_reg_7/ENARDEN (net: exspike_migration_8_16_design_i/exspike_0/inst/U_WEIGHT_TILE/p_53_out) which is driven by a register (exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC RTSTAT-10] No routable loads: 66 net(s) have no routable loads. The problem bus(es) and/or net(s) are exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0], exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0], exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0], exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0], exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0], exspike_migration_8_16_design_i/axi_mem_intercon_1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0], exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0], exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0], exspike_migration_8_16_design_i/axi_mem_intercon/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0]... and (the first 15 of 42 listed).
+INFO: [Vivado 12-3199] DRC finished with 0 Errors, 57 Warnings
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+INFO: [Designutils 20-2272] Running write_bitstream with 8 threads.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Writing bitstream ./exspike_migration_8_16_design_wrapper.bit...
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Project 1-1876] WebTalk data collection is mandatory when using a ULT device. To see the specific WebTalk data collected for your design, open the usage_statistics_webtalk.html or usage_statistics_webtalk.xml file in the implementation directory.
+INFO: [Common 17-83] Releasing license: Implementation
+12 Infos, 57 Warnings, 0 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:00:12 ; elapsed = 00:00:10 . Memory (MB): peak = 3417.715 ; gain = 254.785 ; free physical = 3467 ; free virtual = 19859
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 21 21:44:53 2026...
+[Wed Oct 21 21:44:58 2026] impl_1 finished
+wait_on_runs: Time (s): cpu = 00:04:21 ; elapsed = 00:03:33 . Memory (MB): peak = 1982.652 ; gain = 0.000 ; free physical = 5433 ; free virtual = 21861
+# set impl_status [get_property STATUS [get_runs impl_1]]
+# if {![string match "write_bitstream Complete*" $impl_status]} {
+#     error "Implementation did not complete: $impl_status"
+# }
+# open_run impl_1
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.06 . Memory (MB): peak = 1982.652 ; gain = 0.000 ; free physical = 5267 ; free virtual = 21683
+INFO: [Netlist 29-17] Analyzing 852 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2022.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF Files: Time (s): cpu = 00:00:00.63 ; elapsed = 00:00:00.64 . Memory (MB): peak = 2567.504 ; gain = 6.938 ; free physical = 4660 ; free virtual = 21072
+Restored from archive | CPU: 0.640000 secs | Memory: 13.394058 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.63 ; elapsed = 00:00:00.64 . Memory (MB): peak = 2567.504 ; gain = 6.938 ; free physical = 4660 ; free virtual = 21072
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2775.605 ; gain = 0.000 ; free physical = 4383 ; free virtual = 20791
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 191 instances were transformed.
+  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 32 instances
+  RAM128X1S => RAM128X1S (MUXF7, RAMS64E(x2)): 15 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 4 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 2 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 132 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 6 instances
+
+open_run: Time (s): cpu = 00:00:13 ; elapsed = 00:00:11 . Memory (MB): peak = 2775.605 ; gain = 792.953 ; free physical = 4383 ; free virtual = 20791
+# report_utilization -file [file join $output_dir utilization.rpt]
+# report_utilization -hierarchical -file [file join $output_dir utilization_hierarchical.rpt]
+# report_timing_summary -delay_type max -report_unconstrained -check_timing_verbose \
+#     -max_paths 10 -file [file join $output_dir timing_summary.rpt]
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+# report_drc -file [file join $output_dir drc.rpt]
+Command: report_drc -file /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/drc.rpt.
+report_drc completed successfully
+# report_power -file [file join $output_dir power.rpt]
+Command: report_power -file /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/power.rpt
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
+Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.
+0 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+# set worst_slack [get_property SLACK [get_timing_paths -delay_type max -max_paths 1]]
+# if {$worst_slack < 0} { error "Timing failed at100MHz: WNS=$worst_slack; do not deploy this build" }
+Timing failed at100MHz: WNS=-2.519; do not deploy this build
+    while executing
+"error "Timing failed at100MHz: WNS=$worst_slack; do not deploy this build" "
+    invoked from within
+"if {$worst_slack < 0} { error "Timing failed at100MHz: WNS=$worst_slack; do not deploy this build" }"
+    (file "/home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/build_overlay.tcl" line 73)
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 21 21:45:12 2026...

@@ -1,0 +1,71 @@
+digraph BoardFramework {
+  graph [rankdir=LR, bgcolor="white", pad="0.35", nodesep="0.42", ranksep="0.85",
+         fontname="Noto Sans CJK SC", fontsize=20,
+         label="ExSpike-main2 8:16 migration_v1 — PYNQ-Z2 上板框架与软硬件数据流", labelloc=t];
+  node [shape=box, style="rounded,filled", fontname="Noto Sans CJK SC", fontsize=11,
+        color="#475569", fillcolor="#f8fafc", margin="0.12,0.08"];
+  edge [fontname="Noto Sans CJK SC", fontsize=9, color="#475569", arrowsize=0.75];
+
+  subgraph cluster_host {
+    label="实验/部署文件"; color="#94a3b8"; style="rounded,dashed";
+    data [label="CIFAR-10\nN×3×32×32, FP32"];
+    artifacts [label="Overlay: .bit + .hwh\n权重: exspike_8_16_weights.npz\n数据: *.npy", fillcolor="#e2e8f0"];
+    result [label="logits[1,10] / argmax\n性能计数 / JSON / CSV", fillcolor="#dcfce7"];
+  }
+
+  subgraph cluster_ps {
+    label="PS — ARM Cortex-A9 / Python + NumPy + PYNQ"; color="#2563eb"; penwidth=2; style="rounded";
+    runtime [label="SpikformerRuntime\n控制完整计算图", fillcolor="#dbeafe"];
+    swops [label="软件算法算子\nrepeat T=4 · im2col · BN\n普通/三值 LIF · MaxPool\n残差 · reshape · mean\n动态量化/反量化", fillcolor="#bfdbfe"];
+    driver [label="PynqBackend\nallocate CMA / flush / invalidate\n写寄存器 / start / 轮询 done\n读取错误码与性能计数", fillcolor="#93c5fd"];
+    cache [label="ARM cache", shape=cylinder, fillcolor="#dbeafe"];
+    runtime -> swops [label="层级调度"];
+    swops -> driver [label="遇到 Conv/Linear\n或 Attention"];
+    driver -> cache [dir=both, label="copy / cache维护"];
+  }
+
+  subgraph cluster_ddr {
+    label="PS DDR / CMA 物理连续缓冲区（层间共享与软硬件边界）"; color="#7c3aed"; penwidth=2; style="rounded";
+    xbuf [label="矩阵输入 X\nINT16，行补齐至4元素", shape=cylinder, fillcolor="#ede9fe"];
+    wbuf [label="8-of-16 packed weights\n每输入列16 B；常驻缓存", shape=cylinder, fillcolor="#ede9fe"];
+    ybuf [label="矩阵输出 Y\nINT32 accumulator", shape=cylinder, fillcolor="#ede9fe"];
+    qkv [label="Q/K/V\nINT8 {-1,0,+1}\n[head=12,time=4,token=64,dim=32]", shape=cylinder, fillcolor="#ede9fe"];
+    attnout [label="Attention输出\nINT8 {0,1}\n同 head-major 布局", shape=cylinder, fillcolor="#ede9fe"];
+  }
+
+  subgraph cluster_pl {
+    label="PL — XC7Z020 Programmable Logic，FCLK0 = 100 MHz"; color="#ea580c"; penwidth=2; style="rounded";
+    gp [label="AXI GP0 控制互连\n32-bit AXI-Lite", fillcolor="#ffedd5"];
+    ex [label="exspike_0 矩阵核\n0x4000_0000–0x4000_0FFF\n30 calls/image", fillcolor="#fed7aa"];
+    exinner [label="片上 tile RAM\nFAST_FILTER → INDEX2ABS_SUB_0\n8-lane MP_ACC(48-bit)\nsat32 + AXI writer", fillcolor="#ffedd5"];
+    att [label="attention_0 三值Attention核\n0x4000_1000–0x4000_1FFF\n4 calls/image", fillcolor="#fde68a"];
+    attinner [label="Q/K/V BRAM → QKᵀ score RAM\nscore×V → ×0.125 融合\nLIF: w'=w/2+8A, 阈值64\nINT8 spike打包写回", fillcolor="#fef3c7"];
+    hp0 [label="AXI Interconnect → PS S_AXI_HP0\n64-bit data path", fillcolor="#ffedd5"];
+    hp1 [label="AXI Interconnect → PS S_AXI_HP1\n64-bit data path", fillcolor="#fef3c7"];
+    gp -> ex [label="配置地址/形状/start\n轮询done/读计数"];
+    gp -> att [label="配置Q/K/V/O地址\n形状/start/轮询"];
+    ex -> exinner;
+    att -> attinner;
+    exinner -> hp0 [label="m_axi"];
+    attinner -> hp1 [label="m_axi"];
+  }
+
+  data -> runtime [label="np.load / 单图输入"];
+  artifacts -> runtime [label="加载权重/数据"];
+  artifacts -> gp [label="Overlay下载 bitstream", style=dashed];
+  driver -> gp [label="M_AXI_GP0", color="#2563eb", penwidth=2];
+  cache -> xbuf [dir=both, label="flush/invalidate"];
+  cache -> qkv [dir=both, label="layout copy + flush"];
+  ybuf -> cache [label="invalidate + copy"];
+  attnout -> cache [label="invalidate + transpose"];
+  hp0 -> xbuf [dir=both, label="读 X", color="#ea580c"];
+  hp0 -> wbuf [dir=both, label="读 packed W", color="#ea580c"];
+  hp0 -> ybuf [dir=both, label="写 INT32 Y", color="#ea580c"];
+  hp1 -> qkv [dir=both, label="读 Q/K/V", color="#d97706"];
+  hp1 -> attnout [dir=both, label="写 spike", color="#d97706"];
+  swops -> result [label="最终 mean + head\n反量化/argmax/记录"];
+
+  note [shape=note, label="每图：5 tokenizer矩阵 + 4×(Q/K/V/proj + MLP1/2) + head = 30矩阵调用\n再加 4 次融合Attention调用，共34次PL启动。层间结果多数回到PS DDR/ARM。",
+        fillcolor="#f1f5f9", color="#64748b"];
+  note -> runtime [style=dashed, arrowhead=none];
+}

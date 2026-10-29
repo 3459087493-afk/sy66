@@ -1,0 +1,6 @@
+{
+  "pid": 9556,
+  "mode": "subset1000",
+  "started_at": "2025-05-04T04:34:42.687013+00:00",
+  "command": "board_eval_adaptive_runner.py --mode subset1000 --output-dir results/subset1000 --save-interval 10"
+}

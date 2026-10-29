@@ -1,0 +1,4 @@
+*.npy
+*.zip
+*.pth
+*.pth.tar

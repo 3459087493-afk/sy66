@@ -1,0 +1,111 @@
+digraph V1SparseFlow {
+  graph [rankdir=TB, bgcolor="white", pad="0.28", margin="0", nodesep="0.42",
+         ranksep="0.64", splines=ortho, compound=true, newrank=true,
+         fontname="Times New Roman", fontsize=22,
+         label="V1 Matrix Core: Event Sparsity × RIA 8:16 Weight Sparsity",
+         labelloc=t, labeljust=c];
+  node [shape=box, style="rounded,filled", color="#202020", penwidth=1.8,
+        fontname="Times New Roman", fontsize=14, margin="0.12,0.07"];
+  edge [color="#202020", penwidth=2.1, arrowsize=0.78,
+        fontname="Times New Roman", fontsize=11];
+
+  subgraph cluster_ddr {
+    label=<<B>PS DDR / CMA</B>>;
+    color="#c58b62"; fillcolor="#fff1e7"; style="rounded,filled"; penwidth=2.0;
+    xddr [shape=record, label="{Input X|INT16 activation rows}", fillcolor="#ffffff"];
+    wddr [shape=record, label="{Packed RIA Weights|INT8 values + selection bytes}", fillcolor="#ffffff"];
+    yddr [shape=record, label="{Output Y|INT32 accumulators}", fillcolor="#ffffff"];
+    { rank=same; xddr; wddr; yddr; }
+  }
+
+  subgraph cluster_event {
+    label=<<B>Input Event Path</B><BR/><FONT POINT-SIZE="12">ExSpike RTL adapted to 16-element groups</FONT>>;
+    color="#8fbad1"; fillcolor="#edf8fd"; style="rounded,filled"; penwidth=2.0;
+    xram [label="Input Tile RAM\n64-bit AXI beats", fillcolor="#ffffff"];
+    bitmap [shape=plain, label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" COLOR="#202020">
+        <TR><TD COLSPAN="8" BGCOLOR="#d8eff9"><B>16-bit Non-zero Event Map</B></TD></TR>
+        <TR><TD BGCOLOR="#42b6df">1</TD><TD>0</TD><TD BGCOLOR="#42b6df">1</TD><TD>0</TD><TD>0</TD><TD BGCOLOR="#42b6df">1</TD><TD>…</TD><TD>0</TD></TR>
+      </TABLE>>];
+    fef [label="FAST_FILTER\nlowest-set-bit iterator", fillcolor="#cfeefa"];
+    idx [label="INDEX2ABS_SUB_0\none-hot → absolute index", fillcolor="#cfeefa"];
+    event [shape=record, label="{Valid Event|index i|signed activation xᵢ ≠ 0}", fillcolor="#ffffff"];
+    xram -> bitmap [color="#00a6d6", label="xᵢ ≠ 0"];
+    bitmap -> fef [color="#00a6d6"];
+    fef -> idx [color="#00a6d6", label="one-hot"];
+    idx -> event [color="#00a6d6"];
+    xram -> event [color="#ed8b21", fontcolor="#a85d00", label="activation value"];
+  }
+
+  subgraph cluster_ria {
+    label=<<B>RIA 8:16 Weight Path</B>>;
+    color="#75a86a"; fillcolor="#eff8ec"; style="rounded,filled"; penwidth=2.0;
+    ria_group [shape=plain, label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5" COLOR="#202020">
+        <TR><TD COLSPAN="16" BGCOLOR="#dcefd7"><B>One 16-weight group: exactly 8 retained</B></TD></TR>
+        <TR>
+          <TD BGCOLOR="#74bf67">w0</TD><TD BGCOLOR="#eeeeee">×</TD><TD BGCOLOR="#74bf67">w2</TD><TD BGCOLOR="#eeeeee">×</TD>
+          <TD BGCOLOR="#74bf67">w4</TD><TD BGCOLOR="#74bf67">w5</TD><TD BGCOLOR="#eeeeee">×</TD><TD BGCOLOR="#eeeeee">×</TD>
+          <TD BGCOLOR="#74bf67">w8</TD><TD BGCOLOR="#eeeeee">×</TD><TD BGCOLOR="#74bf67">w10</TD><TD BGCOLOR="#eeeeee">×</TD>
+          <TD BGCOLOR="#74bf67">w12</TD><TD BGCOLOR="#eeeeee">×</TD><TD BGCOLOR="#74bf67">w14</TD><TD BGCOLOR="#eeeeee">×</TD>
+        </TR>
+      </TABLE>>];
+    packed [shape=plain, label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6" COLOR="#202020" BGCOLOR="#ffffff">
+        <TR><TD COLSPAN="2" BGCOLOR="#dcefd7"><B>Hardware Tile Format</B></TD></TR>
+        <TR><TD>Weight Tile RAM</TD><TD>8 × INT8 values</TD></TR>
+        <TR><TD>Selected Tile RAM</TD><TD>8-bit lane mask</TD></TR>
+        <TR><TD COLSPAN="2"><FONT POINT-SIZE="10">input-feature-major, 8 output lanes / tile</FONT></TD></TR>
+      </TABLE>>];
+    selector [label="Weight / Mask Selection\nmask[i][lane] = 1 ?", fillcolor="#d8efd2"];
+    ria_group -> packed [color="#38a855", fontcolor="#267b3a", label="offline packing"];
+    packed -> selector [color="#38a855", fontcolor="#267b3a", label="wᵢ + selected[7:0]"];
+  }
+
+  subgraph cluster_compute {
+    label=<<B>Event-driven Sparse Compute</B>>;
+    color="#cc9a55"; fillcolor="#fff4d8"; style="rounded,filled"; penwidth=2.0;
+    gate [shape=diamond, label="event ∩\nRIA mask", fillcolor="#ffe7aa", width=1.15, height=0.82];
+    mac [label="8-lane Sparse MAC\nINT16 × INT8", fillcolor="#ffe8ba"];
+    acc [label="8 × MP_ACC\n48-bit signed accumulation", fillcolor="#fbd9c0"];
+    sat [label="Saturate to INT32\nAXI write-back", fillcolor="#ffffff"];
+    gate -> mac [color="#7a3db8", label="selected lanes only"];
+    mac -> acc [color="#7a3db8", label="partial products"];
+    acc -> sat [color="#7a3db8"];
+  }
+
+  ctrl [label="AXI-Lite Configuration + FSM\nvectors · in/out features · addresses · start", fillcolor="#ffffff"];
+  counters [shape=plain, label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6" COLOR="#202020" BGCOLOR="#ffffff">
+      <TR><TD BGCOLOR="#f3e1e1"><B>Hardware Counters</B></TD></TR>
+      <TR><TD ALIGN="LEFT">cycles · events · selected MAC issues · read beats</TD></TR>
+    </TABLE>>];
+  note [shape=plain, label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#555555" BGCOLOR="#fafafa">
+      <TR><TD ALIGN="LEFT"><B>Two independent sparsity conditions</B></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#007ea8">Event sparsity:</FONT> x<SUB>i</SUB> = 0 → no event, no MAC issue</TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#267b3a">Weight sparsity:</FONT> exactly 8 of every 16 weights retained</TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#7a3db8">Executed work:</FONT> valid input event ∩ retained-weight mask</TD></TR>
+    </TABLE>>];
+
+  xddr -> xram [color="#00a6d6", label="HP0 read"];
+  wddr -> packed [color="#38a855", label="HP0 read"];
+  event -> gate [color="#00a6d6", label="index + value"];
+  selector -> gate [color="#38a855", label="lane mask + weights"];
+  sat -> yddr [color="#00a6d6", label="HP0 write"];
+  ctrl -> fef [color="#e31a1c", style=dashed];
+  ctrl -> selector [color="#e31a1c", style=dashed];
+  ctrl -> mac [color="#e31a1c", style=dashed];
+  acc -> counters [color="#e31a1c", style=dashed, label="instrumentation"];
+
+  legend [shape=plain, style="", fillcolor="white", label=<
+    <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="10" CELLPADDING="2" BGCOLOR="white">
+      <TR><TD><FONT COLOR="#00a6d6">━━▶</FONT> Event / tensor flow</TD>
+          <TD><FONT COLOR="#38a855">━━▶</FONT> Weight / mask flow</TD>
+          <TD><FONT COLOR="#ed8b21">━━▶</FONT> Signed activation value</TD></TR>
+      <TR><TD><FONT COLOR="#7a3db8">━━▶</FONT> Sparse arithmetic</TD>
+          <TD><FONT COLOR="#e31a1c">┄┄▶</FONT> Control / counters</TD><TD></TD></TR>
+    </TABLE>>];
+  sat -> note [style=invis, weight=2];
+  note -> legend [style=invis, weight=2];
+}

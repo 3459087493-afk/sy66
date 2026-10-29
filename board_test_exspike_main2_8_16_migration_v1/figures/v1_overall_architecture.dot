@@ -1,0 +1,116 @@
+digraph V1Overall {
+  graph [rankdir=TB, bgcolor="white", pad="0.28", margin="0", nodesep="0.42",
+         ranksep="0.72", splines=ortho, compound=true, newrank=true,
+         fontname="Times New Roman", fontsize=22,
+         label="Ternary SpikingFormer V1 on PYNQ-Z2: PS–DDR–PL Collaborative Architecture",
+         labelloc=t, labeljust=c];
+  node [shape=box, style="rounded,filled", color="#202020", penwidth=1.8,
+        fontname="Times New Roman", fontsize=15, margin="0.13,0.08"];
+  edge [color="#202020", penwidth=2.1, arrowsize=0.78,
+        fontname="Times New Roman", fontsize=12];
+
+  subgraph cluster_board {
+    label=<<B><I>PYNQ-Z2  (XC7Z020, 100 MHz PL)</I></B>>;
+    color="#171717"; penwidth=2.4; style="rounded"; margin=24;
+
+    subgraph cluster_ps {
+      label=<<B>Processing System (PS / ARM Cortex-A9)</B>>;
+      color="#7098b5"; fillcolor="#eaf4fb"; style="rounded,filled"; penwidth=2.0; margin=18;
+
+      input [label="CIFAR-10 Input\nFP32, T = 4", fillcolor="#ffffff"];
+      scheduler [shape=plain, label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="8" COLOR="#202020" BGCOLOR="#f8fcff">
+          <TR><TD BGCOLOR="#dcecf7"><B>SpikingFormer Model Scheduler</B></TD></TR>
+          <TR><TD ALIGN="LEFT">Tokenizer + 4 Encoder Blocks + Head</TD></TR>
+          <TR><TD ALIGN="LEFT"><B>34 PL launches / image</B><BR/>30 matrix + 4 attention</TD></TR>
+        </TABLE>>];
+      swops [shape=plain, label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7" COLOR="#202020" BGCOLOR="#ffffff">
+          <TR><TD BGCOLOR="#dcecf7"><B>ARM Software Operators</B></TD></TR>
+          <TR><TD ALIGN="LEFT">im2col / reshape / transpose / pooling</TD></TR>
+          <TR><TD ALIGN="LEFT">BN + ordinary / ternary LIF</TD></TR>
+          <TR><TD ALIGN="LEFT">dynamic INT16 quantization / dequantization</TD></TR>
+          <TR><TD ALIGN="LEFT">residual add + final mean + argmax</TD></TR>
+        </TABLE>>];
+      driver [label="PYNQ Runtime / Driver\nCMA allocate · flush/invalidate\nMMIO start · poll · counters", fillcolor="#cfe5f4"];
+      gp0 [label="M_AXI_GP0\nAXI-Lite Control", fillcolor="#ffffff"];
+
+      input -> scheduler [color="#303030"];
+      scheduler -> swops [color="#303030"];
+      swops -> driver [color="#303030"];
+      driver -> gp0 [color="#e31a1c", fontcolor="#b31315", label="configuration"];
+      { rank=same; input; scheduler; swops; driver; gp0; }
+    }
+
+    subgraph cluster_ddr {
+      label=<<B>PS DDR / CMA Shared Memory</B>>;
+      color="#c58b62"; fillcolor="#fff1e7"; style="rounded,filled"; penwidth=2.0; margin=18;
+      ddr [shape=plain, label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="9" COLOR="#202020" BGCOLOR="#ffffff">
+          <TR><TD BGCOLOR="#f7ddca"><B>Layer Tensor Buffers</B></TD></TR>
+          <TR><TD ALIGN="LEFT">X: INT16 activation rows</TD></TR>
+          <TR><TD ALIGN="LEFT">Y: INT32 accumulators</TD></TR>
+          <TR><TD BGCOLOR="#e4f3df"><B>RIA 8:16 Weight Store</B></TD></TR>
+          <TR><TD ALIGN="LEFT">INT8 values + selection masks</TD></TR>
+          <TR><TD BGCOLOR="#e9e2f2"><B>Attention Buffers</B></TD></TR>
+          <TR><TD ALIGN="LEFT">Q / K / V: ternary INT8 {-1,0,+1}</TD></TR>
+          <TR><TD ALIGN="LEFT">Attention output: binary INT8 {0,1}</TD></TR>
+        </TABLE>>];
+    }
+
+    subgraph cluster_pl {
+      label=<<B>Programmable Logic (PL)</B>>;
+      color="#9f7c33"; fillcolor="#fffaf0"; style="rounded,filled"; penwidth=2.0; margin=20;
+
+      ex [shape=plain, label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7" COLOR="#202020" BGCOLOR="#fff8dc">
+          <TR><TD COLSPAN="2" BGCOLOR="#f9e8ae"><B>exspike_0 — Event-driven Matrix Core</B><BR/><FONT POINT-SIZE="11">AXI-Lite @ 0x4000_0000 · AXI4 master → HP0</FONT></TD></TR>
+          <TR><TD>Input Tile RAM</TD><TD>Weight / Mask Tile RAM</TD></TR>
+          <TR><TD BGCOLOR="#d9f0fb">Fast Event Filter</TD><TD BGCOLOR="#e4f3df">RIA 8:16 Selection</TD></TR>
+          <TR><TD>Index Decoder</TD><TD>8-lane Sparse MAC</TD></TR>
+          <TR><TD COLSPAN="2">8 × 48-bit MP_ACC → saturate INT32</TD></TR>
+          <TR><TD COLSPAN="2"><B>5 tokenizer + 24 encoder + 1 head = 30 calls</B></TD></TR>
+        </TABLE>>];
+
+      att [shape=plain, label=<
+        <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7" COLOR="#202020" BGCOLOR="#f4eff8">
+          <TR><TD BGCOLOR="#ddd2e9"><B>attention_0 — Ternary Attention Core</B><BR/><FONT POINT-SIZE="11">AXI-Lite @ 0x4000_1000 · AXI4 master → HP1</FONT></TD></TR>
+          <TR><TD>Q / K / V Slice Buffers</TD></TR>
+          <TR><TD BGCOLOR="#eee8f5">Signed QK<SUP>T</SUP>  (INT8 ternary)</TD></TR>
+          <TR><TD>Score × V  (24-bit accumulation)</TD></TR>
+          <TR><TD>Scale × 0.125</TD></TR>
+          <TR><TD>Binary LIF  (τ=2, V<SUB>th</SUB>=0.5, hard reset)</TD></TR>
+          <TR><TD><B>1 fused call / block × 4 blocks</B></TD></TR>
+        </TABLE>>];
+
+      hp0 [label="S_AXI_HP0\n64-bit AXI Data", fillcolor="#ffffff"];
+      hp1 [label="S_AXI_HP1\n64-bit AXI Data", fillcolor="#ffffff"];
+      fclk [label="FCLK_CLK0 / Reset\n100 MHz", fillcolor="#ffffff"];
+
+      ex -> hp0 [dir=both, color="#00a6d6", fontcolor="#007ea8", label="X / W / mask / Y"];
+      att -> hp1 [dir=both, color="#00a6d6", fontcolor="#007ea8", label="Q / K / V / output"];
+      ex -> att [style=dashed, color="#777777", fontcolor="#555555", arrowhead=none,
+                 label="No direct on-chip stream"];
+      fclk -> ex [color="#e31a1c", style=dashed];
+      fclk -> att [color="#e31a1c", style=dashed];
+      { rank=same; ex; att; }
+      { rank=same; hp0; hp1; fclk; }
+    }
+
+    driver -> ddr [dir=both, color="#00a6d6", fontcolor="#007ea8",
+                   label="CPU copy + cache maintenance"];
+    ddr -> hp0 [dir=both, color="#00a6d6", fontcolor="#007ea8", label="DDR traffic"];
+    ddr -> hp1 [dir=both, color="#00a6d6", fontcolor="#007ea8", label="DDR traffic"];
+    gp0 -> ex [color="#e31a1c", fontcolor="#b31315", label="start / status / address"];
+    gp0 -> att [color="#e31a1c", fontcolor="#b31315", label="start / status / address"];
+  }
+
+  legend [shape=plain, style="", fillcolor="white", label=<
+    <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="10" CELLPADDING="2" BGCOLOR="white">
+      <TR><TD><FONT COLOR="#e31a1c">━━▶</FONT> Configuration / control</TD>
+          <TD><FONT COLOR="#00a6d6">━━▶</FONT> Tensor data through DDR/CMA</TD></TR>
+      <TR><TD><FONT COLOR="#38a855">━━▶</FONT> Weight / selection information</TD>
+          <TD><FONT COLOR="#777777">┄┄</FONT> Not directly connected</TD></TR>
+    </TABLE>>];
+  att -> legend [style=invis, weight=2];
+}

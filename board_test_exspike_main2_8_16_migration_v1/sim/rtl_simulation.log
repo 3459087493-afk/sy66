@@ -1,0 +1,12 @@
+CASE_PASS case=1 V=3 I=32 O=16 sparse=1 extreme=0 zero_period=0 events=188
+CASE_PASS case=2 V=3 I=27 O=10 sparse=0 extreme=0 zero_period=0 events=158
+CASE_PASS case=3 V=2 I=384 O=16 sparse=1 extreme=0 zero_period=5 events=306
+CASE_PASS case=4 V=1 I=2048 O=10 sparse=1 extreme=1 zero_period=0 events=4096
+CASE_PASS case=5 V=1 I=2048 O=10 sparse=1 extreme=-1 zero_period=0 events=4096
+CASE_PASS case=6 V=1 I=1024 O=8 sparse=0 extreme=1 zero_period=0 events=1024
+CASE_PASS case=7 V=1 I=1024 O=8 sparse=0 extreme=-1 zero_period=0 events=1024
+CASE_PASS case=8 V=1 I=32 O=8 sparse=1 extreme=0 zero_period=1000 events=1
+CASE_PASS case=9 V=2 I=32 O=10 sparse=1 extreme=0 zero_period=-1 events=0
+CASE_PASS case=10 V=150 I=27 O=10 sparse=0 extreme=0 zero_period=0 events=8018
+RTL_INTEGER_SIMULATION_PASS 10 cases; ExSpike filter/address/accumulator, MAC counters and4KiB boundary verified
+TERNARY_ATTENTION_RTL_PASS signed_nonidentical_tokens_temporal_state counters

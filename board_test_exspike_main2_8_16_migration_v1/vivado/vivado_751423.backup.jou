@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Wed Oct 21 21:59:42 2026
+# Process ID: 751423
+# Current directory: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado
+# Command line: vivado -mode batch -source /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/build_overlay.tcl
+# Log file: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/vivado.log
+# Journal file: /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/vivado.jou
+# Running On: cym-HP-OmniBook-7-Laptop-16-az0xxx, OS: Linux, CPU Frequency: 398.770 MHz, CPU Physical cores: 10, Host memory: 33266 MB
+#-----------------------------------------------------------
+source /home/cym/prj2/finn/notebooks/end2end_example/sy2/spikformer-main/cifar10/board_test_exspike_main2_8_16_migration_v1/vivado/build_overlay.tcl

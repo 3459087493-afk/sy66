@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "training_environment_required": false,
+  "checkpoint_and_nm8_16_hashes": "PASS",
+  "weight_layers": 30,
+  "ria_layers": 20,
+  "all_ria_groups_exact_8_of_16": true,
+  "attention_software_golden": "PASS",
+  "full_graph_two_images_all_logits_bit_exact": true,
+  "rtl_simulation": "PASS",
+  "timing": {
+    "clock_mhz": 100.0,
+    "wns_ns": 0.259,
+    "tns_ns": 0.0
+  },
+  "datasets": {
+    "cifar10_test": {
+      "samples": 10000,
+      "class_counts": [
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000,
+        1000
+      ]
+    },
+    "cifar10_subset1000": {
+      "samples": 1000,
+      "class_counts": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ]
+    }
+  },
+  "artifacts": {
+    "exspike_migration_8_16.bit": "16dfca64ed45a0c07c86bb8b9fef441a19bda559645aaa191197e2a72459dcc1",
+    "exspike_migration_8_16.hwh": "769ae6a2a5dc591efee60fd9eb8538fa5e3a905be04321b541994b6addd16fc7",
+    "exspike_migration_8_16.xsa": "f59b544de2e187c42fb789855d4aa8bbe9bb968ae75f448bbde76e5703414e97",
+    "exspike_8_16_weights.npz": "50b726a81dd6474b4f954af41c7eed4cce00279a3bf6602d02649c6c022eb384"
+  },
+  "board_tested": false
+}
